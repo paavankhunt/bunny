@@ -10,6 +10,10 @@ const nextConfig = {
         source: '/',
         destination: 'https://bunny-chat.vercel.app/',
       },
+      {
+        source: '/api/:path*',
+        destination: '/api/:path*',
+      },
     ];
   },
 };
