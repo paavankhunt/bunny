@@ -43,12 +43,17 @@ export const SocketProvider = ({ children }: any) => {
         : (process.env.NEXT_PUBLIC_BASE_URL as string),
       {
         path: '/api/socketio',
-      }
+      },
     );
 
     socket.current.on('connect', () => {
-      const name = prompt('Enter your name:');
-      const userName = name ? name : 'User_' + socket.current.id;
+      let userName = '';
+      if (typeof window !== 'undefined') {
+        const name = prompt('Enter your name:');
+        userName = name ? name : 'User_' + socket.current.id;
+      } else {
+        userName = 'User_' + socket.current.id;
+      }
       setUser(userName);
       setConnected(true);
 
